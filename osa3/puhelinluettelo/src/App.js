@@ -38,7 +38,11 @@ const App = () => {
             setPersons(persons.map(person => person.id !== returnedPerson.id ? person : returnedPerson))
           })
           .catch(error => {
-            setNotificationMessage(`Information of ${newName} has already been deleted from the server`)
+            console.log(error.name)
+            if (error.name === 'TypeError')
+              setNotificationMessage(`Information of ${newName} has already been deleted from the server`)
+            else
+              setNotificationMessage(`${error.response.data.error}`)
             setNotificationStyle("error")
             setTimeout(() => {
               setNotificationMessage(null)
@@ -64,6 +68,14 @@ const App = () => {
           setPersons(persons.concat(returnedPerson))
           setNewName('')
           setNewNumber('')
+        })
+        .catch(error => {
+          console.log(error.response.data)
+          setNotificationMessage(`${error.response.data.error}`)
+          setNotificationStyle("error")
+          setTimeout(() => {
+            setNotificationMessage(null)
+          }, 5000)
         })
       setNotificationMessage(`Added ${newName}`)
       setNotificationStyle("success")
