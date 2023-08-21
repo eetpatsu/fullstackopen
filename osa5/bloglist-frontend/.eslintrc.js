@@ -1,7 +1,8 @@
 module.exports = {
     'env': {
         'browser': true,
-        'es2021': true
+        'es2021': true,
+        "cypress/globals": true
     },
     'extends': [
         'eslint:recommended',
@@ -28,7 +29,8 @@ module.exports = {
     },
     'plugins': [
         '@typescript-eslint',
-        'react'
+        'react',
+        "cypress"
     ],
     'rules': {
         'indent': [
@@ -50,7 +52,7 @@ module.exports = {
         "react/react-in-jsx-scope": "off",
         "react/prop-types": 0,
     },
-    'ignorePatterns': ['.eslintrc.js', 'build', 'node_modules', ],
+    'ignorePatterns': ['.eslintrc.js', 'build', 'node_modules', 'cypress.config.js'],
     'settings': {
         'react': {
             'version': "detect",
